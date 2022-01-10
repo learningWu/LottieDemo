@@ -1,0 +1,118 @@
+<!-- <html>-->
+<!--     <head>-->
+<!--         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">-->
+
+<script type="text/javascript">
+
+            function javacalljs(){
+            }
+
+            function getAnimConfig(){
+                  var animMap=
+                  {
+                      "animMap": [
+                        {
+                          "id": "image_7",
+                          "res": "bage"
+                        },
+                        {
+                          "id": "image_4",
+                          "res": "beanbody"
+                        },
+                        {
+                          "id": "image_3",
+                          "res": "rightarm2"
+                        },
+                        {
+                          "id": "image_2",
+                          "res": "cloth"
+                        },
+                        {
+                          "id": "image_1",
+                          "res": "leftarm2"
+                        },
+                        {
+                          "id": "image_0",
+                          "res": "hat2"
+                        }
+                      ]
+                  }
+                window.ws.getAnimConfig(JSON.stringify(animMap));
+            }
+
+            function setAnimTransForm(){
+                var transformMap=
+                    {
+                      "transformMap": [
+                        {
+                          "keypath": "leftarm",
+                          "property": "anchor",
+                          "x": 120,
+                          "y": 300
+                        },
+                        {
+                          "keypath": "rightarm",
+                          "property": "anchor",
+                          "x": 50,
+                          "y": 200
+                        }
+                      ]
+                    }
+                window.ws.setAnimTransForm(JSON.stringify(transformMap));
+            }
+
+            function getAnimConfig2(){
+                  var animMap=
+                  {
+                      "animMap": [
+                        {
+                          "id": "image_4",
+                          "res": "beanbody"
+                        },
+                        {
+                          "id": "image_3",
+                          "res": "rightarm"
+                        },
+                        {
+                          "id": "image_2",
+                          "res": "cloth"
+                        },
+                        {
+                          "id": "image_1",
+                          "res": "leftarm"
+                        },
+                        {
+                          "id": "image_0",
+                          "res": "hat"
+                        }
+                      ]
+                  }
+                window.ws.getAnimConfig(JSON.stringify(animMap));
+            }
+
+            function setAnimTransForm2(){
+                var transformMap=
+                    {
+                      "transformMap": [
+                        {
+                          "keypath": "leftarm",
+                          "property": "anchor",
+                          "x": 120,
+                          "y": 100
+                        },
+                        {
+                          "keypath": "rightarm",
+                          "property": "anchor",
+                          "x": 50,
+                          "y": 200
+                        }
+                      ]
+                    }
+                window.ws.setAnimTransForm(JSON.stringify(transformMap));
+            }
+
+</script>
+<!--     </head>-->
+
+<!--     <body> </body>-->
+<!-- </html>-->

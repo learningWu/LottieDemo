@@ -1,0 +1,117 @@
+<script type="text/javascript">
+
+            function getInitAnimConfig(){
+                  var animMap=
+                  {
+                      "imgMap": [
+                        {
+                          "id": "image_5",
+                          "res": "pant"
+                        },
+                        {
+                          "id": "image_4",
+                          "res": "beanbody"
+                        },
+                        {
+                          "id": "image_3",
+                          "res": "rightarm2"
+                        },
+                        {
+                          "id": "image_2",
+                          "res": "cloth"
+                        },
+                        {
+                          "id": "image_1",
+                          "res": "leftarm2"
+                        },
+                        {
+                          "id": "image_0",
+                          "res": "hat2"
+                        }
+                      ],
+                      "transformMap": [
+                        {
+                          "keypath": "leftarm",
+                          "property": "anchor",
+                          "x": 120,
+                          "y": 300
+                        },
+                        {
+                          "keypath": "rightarm",
+                          "property": "anchor",
+                          "x": 50,
+                          "y": 200
+                        }
+                      ]
+                  }
+                window.LottieView.getInitAnimConfig(JSON.stringify(animMap));
+                return JSON.stringify(animMap);
+            }
+
+            function onTouchPointEvent(arg){
+                  var point=arg.split('-');
+                  var x=parseFloat(point[0]);
+                  var y=parseFloat(point[1]);
+                  if (x>1873 && x < 2621 && y<650 && y>340) {
+                      var animMap=
+                          {
+                              "imgMap": [
+                                {
+                                  "id": "image_0",
+                                  "res": "hat2"
+                                }
+                              ]
+                          }
+                      window.LottieView.getAnimConfig(JSON.stringify(animMap),'');
+                      window.LottieView.onTouchEvent(JSON.stringify(animMap),JSON.stringify(point));
+                  }else{
+                    var animMap2=
+                          {
+                              "imgMap": [
+                                {
+                                  "id": "image_4",
+                                  "res": "beanbody"
+                                },
+                                {
+                                  "id": "image_3",
+                                  "res": "rightarm"
+                                },
+                                {
+                                  "id": "image_2",
+                                  "res": "cloth"
+                                },
+                                {
+                                  "id": "image_1",
+                                  "res": "leftarm"
+                                },
+                                {
+                                  "id": "image_0",
+                                  "res": "hat"
+                                },
+                                {
+                                  "id": "image_5",
+                                  "res": "pant"
+                                }
+                              ],
+                              "transformMap": [
+                                {
+                                  "keypath": "leftarm",
+                                  "property": "anchor",
+                                  "x": 90,
+                                  "y": 100
+                                },
+                                {
+                                  "keypath": "rightarm",
+                                  "property": "anchor",
+                                  "x": 40,
+                                  "y": 150
+                                }
+                              ]
+                          }
+                     window.LottieView.getAnimConfig(JSON.stringify(animMap2),'clear');
+                  }
+                return JSON.stringify(point);
+            }
+
+
+</script>

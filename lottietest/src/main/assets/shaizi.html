@@ -1,0 +1,57 @@
+<script type="text/javascript">
+
+    function getInitAnimConfig(){
+          var frameConfig=
+          {
+              "frameMap": [
+                {
+                  "min": 0,
+                  "max": 25,
+                  "looper": false,
+                  "delayTime": 0,
+                  "playTime": 0
+                },
+                {
+                  "min": 26,
+                  "max": 35,
+                  "looper": true,
+                  "delayTime": 1000,
+                  "playTime": 1000
+                },
+                {
+                  "min": 36,
+                  "max": 39,
+                  "looper": false,
+                  "delayTime": 2000,
+                  "playTime": 0
+                }
+              ]
+        };
+        window.LottieView.getInitAnimConfig(JSON.stringify(frameConfig));
+        return JSON.stringify(frameConfig);
+    }
+
+    function onTouchPointEvent(arg){
+                  var frameConfig=
+                  {
+                      "frameMap": [
+                        {
+                          "min": 0,
+                          "max": 25,
+                          "looper": false,
+                          "delayTime": 0,
+                          "playTime": 0
+                        },
+                        {
+                          "min": 26,
+                          "max": 43,
+                          "looper": false,
+                          "delayTime": 0,
+                          "playTime": 0
+                        }
+                      ]
+                };
+                window.LottieView.getAnimConfig(JSON.stringify(frameConfig),'clear');
+                return JSON.stringify(point);
+            }
+</script>
