@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2572463768115942" />
+        <entry key="lottietest/src/main/res/layout/activity_home.xml" value="0.307518115942029" />
         <entry key="lottietest/src/main/res/layout/activity_lottie.xml" value="0.307518115942029" />
         <entry key="lottietest/src/main/res/layout/activity_main.xml" value="0.307518115942029" />
+        <entry key="lottietest/src/main/res/layout/activity_main2.xml" value="0.307518115942029" />
+        <entry key="lottietest/src/main/res/layout/activity_main3.xml" value="0.31476449275362317" />
+        <entry key="lottietest/src/main/res/layout/activity_main4.xml" value="0.31476449275362317" />
       </map>
     </option>
   </component>

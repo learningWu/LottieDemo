@@ -111,6 +111,24 @@
                 window.ws.setAnimTransForm(JSON.stringify(transformMap));
             }
 
+            function onTouchPointEvent(arg){
+                  var point=arg.split('-');
+                  var x=parseFloat(point[0]);
+                  var y=parseFloat(point[1]);
+                  var transformMap=
+                    {
+                      "transformMap": [
+                        {
+                          "keypath": "leftarm",
+                          "property": "anchor",
+                          "x": 120,
+                          "y": 100
+                        }
+                      ]
+                    }
+                window.ws.setAnimTransForm(JSON.stringify(transformMap));
+            }
+
 </script>
 <!--     </head>-->
 

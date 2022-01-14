@@ -237,6 +237,7 @@ public class LottieView extends FrameLayout implements ILottieView {
     public void onTouchPointEvent(float x, float y) {
         if (mWebView != null) {
             String arg = x + "-" + y;
+            Log.d("x-y", arg);
             callJsMethodByLoadUrl("javascript:onTouchPointEvent('" + arg + "')");
         }
     }

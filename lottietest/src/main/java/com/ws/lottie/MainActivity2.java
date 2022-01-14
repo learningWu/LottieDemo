@@ -3,10 +3,12 @@ package com.ws.lottie;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -74,12 +76,12 @@ public class MainActivity2 extends AppCompatActivity {
         contentWebView.loadUrl("file:///android_asset/show.html");
         contentWebView.setWebChromeClient(new WebChromeClient());
 
-        lottieView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changCloths();
-            }
-        });
+//        lottieView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                changCloths();
+//            }
+//        });
     }
 
     public void changCloths() {
@@ -177,7 +179,36 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private void initLottieView() {
-        lottieView.setAnimation(R.raw.bean);
+        lottieView.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    // 获取触摸点的坐标 x, y
+                    float x = event.getX();
+                    float y = event.getY();
+                    // 目标点的坐标
+                    float dst[] = new float[2];
+                    // 获取到ImageView的matrix
+                    Matrix imageMatrix = lottieView.getImageMatrix();
+                    // 创建一个逆矩阵
+                    Matrix inverseMatrix = new Matrix();
+                    // 求逆，逆矩阵被赋值
+                    imageMatrix.invert(inverseMatrix);
+                    // 通过逆矩阵映射得到目标点 dst 的值
+                    inverseMatrix.mapPoints(dst, new float[]{x, y});
+                    float dstX = dst[0];
+                    float dstY = dst[1];
+                    if (contentWebView != null) {
+                        String arg = x + "-" + y;
+                        Log.d("x-y", arg);
+                        contentWebView.loadUrl("javascript:onTouchPointEvent('" + arg + "')");
+                    }
+                }
+                return false;
+            }
+        });
+        lottieView.setAnimation(R.raw.merychrimas);
         lottieView.setScale(0.4f);
 
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
@@ -186,6 +217,10 @@ public class MainActivity2 extends AppCompatActivity {
         opts.inScaled = true;
         opts.inDensity = densityDpi;
 
+        // 两种使用本地图片的方式
+        // 1.使用图片资源文件
+//        lottieView.setImageAssetsFolder("images/");
+        // 2.使用代理方法，将使用到 asset(资源文件) 的地方代理成其他图片
         lottieView.setImageAssetDelegate(new ImageAssetDelegate() {
             @Nullable
             @Override
