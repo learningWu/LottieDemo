@@ -10,6 +10,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.FloatRange;
@@ -67,6 +69,9 @@ public abstract class BaseLayer
         return new NullLayer(drawable, layerModel);
       case TEXT:
         return new TextLayer(drawable, layerModel);
+      case DYNAMIC:
+        Log.e("hhh","dynamic");
+        return new DynamicLayoutLayer(drawable, layerModel);
       case UNKNOWN:
       default:
         // Do nothing

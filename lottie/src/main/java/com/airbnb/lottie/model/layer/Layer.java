@@ -25,6 +25,7 @@ public class Layer {
     NULL,
     SHAPE,
     TEXT,
+    DYNAMIC,
     UNKNOWN
   }
 
