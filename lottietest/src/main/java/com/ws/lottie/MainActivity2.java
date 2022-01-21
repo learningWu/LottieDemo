@@ -179,6 +179,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private void initLottieView() {
+        lottieView.setAnimation(R.raw.bean);
         lottieView.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -208,7 +209,6 @@ public class MainActivity2 extends AppCompatActivity {
                 return false;
             }
         });
-        lottieView.setAnimation(R.raw.merychrimas);
         lottieView.setScale(0.4f);
 
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
