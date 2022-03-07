@@ -55,7 +55,7 @@ public class JDDynamicLottieView extends View {
             @Nullable
             @Override
             public Bitmap fetchBitmap(LottieImageAsset asset) {
-                System.out.println("ws asset id: " + asset.getId());
+//                System.out.println("ws asset id: " + asset.getId());
                 String assetId = asset.getId();
                 int res = 0;
                 if ("image_0".equals(assetId)) {

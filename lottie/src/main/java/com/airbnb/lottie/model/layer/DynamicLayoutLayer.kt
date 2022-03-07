@@ -20,7 +20,7 @@ class DynamicLayoutLayer(lottieDrawable: LottieDrawable, layerModel: Layer) :
     private lateinit var replaceView: TextView
 
     override fun drawLayer(canvas: Canvas, parentMatrix: Matrix, parentAlpha: Int) {
-        Log.d("hhh", "DynamicLayoutLayer")
+//        Log.d("hhh", "DynamicLayoutLayer")
         if (!this::replaceView.isInitialized) {
             replaceView = getReplaceView()
         }

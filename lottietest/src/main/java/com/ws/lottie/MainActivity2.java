@@ -1,6 +1,8 @@
 package com.ws.lottie;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -16,6 +18,7 @@ import android.webkit.WebView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.airbnb.lottie.ImageAssetDelegate;
 import com.airbnb.lottie.LottieAnimationView;
@@ -25,11 +28,16 @@ import com.airbnb.lottie.LottieOnCompositionLoadedListener;
 import com.airbnb.lottie.LottieProperty;
 import com.airbnb.lottie.model.KeyPath;
 import com.airbnb.lottie.value.LottieValueCallback;
+import com.ws.lottie.lottie.util.HttpUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,8 +73,15 @@ public class MainActivity2 extends AppCompatActivity {
 
         contentWebView = new WebView(this);
 
+        readLocalLottieJson();
         initLottieView();
         initWebView();
+
+        downloadLottieJson("http://192.168.1.6:3000/public/images/bean.json");
+    }
+
+    private void downloadLottieJson(String url) {
+        HttpUtil.downloadFile(url);
     }
 
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
@@ -178,8 +193,33 @@ public class MainActivity2 extends AppCompatActivity {
         return map;
     }
 
+    private void readLocalLottieJson() {
+        File file = new File("/storage/emulated/0/bean.json");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            int n = 0;
+            StringBuilder sBuffer = new StringBuilder();
+            while (n != -1)  //当n不等于-1,则代表未到末尾
+            {
+                n = fileInputStream.read();//读取文件的一个字节(8个二进制位),并将其由二进制转成十进制的整数返回
+                char by = (char) n; //转成字符
+                sBuffer.append(by);
+            }
+            String lottieJson = sBuffer.toString();
+            lottieView.setAnimationFromJson(lottieJson,"beanLocal");
+        } catch (FileNotFoundException e) {
+            System.out.println("文件不存在或者文件不可读或者文件是目录");
+        } catch (IOException e) {
+            System.out.println("读取过程存在异常");
+        }
+    }
+
     private void initLottieView() {
-        lottieView.setAnimation(R.raw.bean);
+//        lottieView.setAnimation(R.raw.bean);
+
+        // lottie 提供的 url 请求缓存api
+//        lottieView.setAnimationFromUrl("http://192.168.1.6:3000/public/images/bean.json", "bean");
+
         lottieView.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -202,7 +242,7 @@ public class MainActivity2 extends AppCompatActivity {
                     float dstY = dst[1];
                     if (contentWebView != null) {
                         String arg = x + "-" + y;
-                        Log.d("x-y", arg);
+//                        Log.d("x-y", arg);
                         contentWebView.loadUrl("javascript:onTouchPointEvent('" + arg + "')");
                     }
                 }
@@ -225,7 +265,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Nullable
             @Override
             public Bitmap fetchBitmap(LottieImageAsset asset) {
-                System.out.println("ws asset id: " + asset.getId());
+//                System.out.println("ws asset id: " + asset.getId());
                 String assetId = asset.getId();
                 int res = 0;
                 if ("image_0".equals(assetId)) {
@@ -253,7 +293,7 @@ public class MainActivity2 extends AppCompatActivity {
             public void onCompositionLoaded(LottieComposition composition) {
                 List<KeyPath> keyPaths = lottieView.resolveKeyPath(new KeyPath("**"));
                 for (KeyPath keyPath : keyPaths) {
-                    Log.d("ws", keyPath.keysToString());
+//                    Log.d("ws", keyPath.keysToString());
                 }
             }
         });
