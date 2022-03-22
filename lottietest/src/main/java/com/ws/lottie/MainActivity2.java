@@ -77,7 +77,7 @@ public class MainActivity2 extends AppCompatActivity {
         initLottieView();
         initWebView();
 
-        downloadLottieJson("http://192.168.1.6:3000/public/images/bean.json");
+//        downloadLottieJson("http://192.168.1.6:3000/public/images/bean.json");
     }
 
     private void downloadLottieJson(String url) {
@@ -116,7 +116,11 @@ public class MainActivity2 extends AppCompatActivity {
             String res = entry.getValue();
             removeImg(configMap);
             int resId = getRes(res);
-            lottieView.updateBitmap(entry.getKey(), BitmapFactory.decodeResource(MainActivity2.this.getResources(), resId, opts));
+            try {
+                lottieView.updateBitmap(entry.getKey(), BitmapFactory.decodeResource(MainActivity2.this.getResources(), resId, opts));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -171,6 +175,8 @@ public class MainActivity2 extends AppCompatActivity {
             resId = R.mipmap.hat2;
         } else if ("hat".equals(res)) {
             resId = R.mipmap.hat;
+        } else if ("hat3".equals(res)) {
+            resId = R.mipmap.hat3;
         }
         return resId;
     }
@@ -206,7 +212,7 @@ public class MainActivity2 extends AppCompatActivity {
                 sBuffer.append(by);
             }
             String lottieJson = sBuffer.toString();
-            lottieView.setAnimationFromJson(lottieJson,"beanLocal");
+            lottieView.setAnimationFromJson(lottieJson, "beanLocal");
         } catch (FileNotFoundException e) {
             System.out.println("文件不存在或者文件不可读或者文件是目录");
         } catch (IOException e) {
@@ -215,7 +221,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private void initLottieView() {
-//        lottieView.setAnimation(R.raw.bean);
+        lottieView.setAnimation(R.raw.sign);
 
         // lottie 提供的 url 请求缓存api
 //        lottieView.setAnimationFromUrl("http://192.168.1.6:3000/public/images/bean.json", "bean");
@@ -269,7 +275,7 @@ public class MainActivity2 extends AppCompatActivity {
                 String assetId = asset.getId();
                 int res = 0;
                 if ("image_0".equals(assetId)) {
-                    res = R.mipmap.hat;
+                    res = R.mipmap.hat3;
                 } else if ("image_1".equals(assetId)) {
                     res = R.mipmap.leftarm;
                 } else if ("image_2".equals(assetId)) {
