@@ -236,6 +236,7 @@ public abstract class BaseLayer
     L.beginSection(drawTraceName);
     if (!visible || layerModel.isHidden()) {
       L.endSection(drawTraceName);
+      
       return;
     }
     buildParentLayerListIfNeeded();
